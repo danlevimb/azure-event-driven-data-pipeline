@@ -1,0 +1,14 @@
+{
+  "event_id": "evt-1001",
+  "event_type": "order_created",
+  "schema_version": "1.0",
+  "source_system": "sql-sales-app",
+  "event_time": "2026-04-21T10:15:34Z",
+  "payload": {
+    "order_id": "ORD-9001",
+    "customer_id": "CUST-10",
+    "order_total": 1499.50,
+    "currency": "MXN",
+    "status": "CREATED"
+  }
+}
