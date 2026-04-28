@@ -23,9 +23,7 @@ The pipeline covers:
 
 ## 🏗️ Architecture
 
-For a high-level explanation of the system design:
-
-👉 [Architecture Overview](docs/architecture/overview.md)
+[Overview](docs/architecture/overview.md)
 
 | Layer| Description |
 |------|-------------|
