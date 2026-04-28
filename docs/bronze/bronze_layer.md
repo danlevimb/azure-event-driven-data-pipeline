@@ -8,7 +8,7 @@
 
 The Bronze layer is responsible for **raw data ingestion**.
 
-It captures events as they arrive from Event Hub and applies [**basic structural validation**](data_contract.md), without enforcing business rules.
+It captures events as they arrive from Event Hub and applies [basic structural validation](data_contract.md), without enforcing business rules.
 
 ---
 
