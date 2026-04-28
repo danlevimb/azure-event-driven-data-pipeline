@@ -1,3 +1,8 @@
+<p align="center">
+<a href="../../README.md">Home</a> |
+<a href="gold_layer.md">Back</a>
+</p>
+
 # Metrics Definition
 
 ## 1. Purpose
