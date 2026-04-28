@@ -3,7 +3,7 @@
 <a href="bronze_layer.md">Back</a>
 </p>
 
-# Data Contract
+# Bronze - Data Contract
 
 ## 1. Input Event
 
