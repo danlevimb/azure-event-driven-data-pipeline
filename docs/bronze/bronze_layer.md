@@ -1,14 +1,14 @@
 # Bronze Layer
 
-## 1. Purpose
+### 1. Purpose
 
 The Bronze layer is responsible for **raw data ingestion**.
 
-It captures events as they arrive from Event Hub and applies **basic structural validation**, without enforcing business rules.
+It captures events as they arrive from Event Hub and applies [**basic structural validation**](data_contract.md), without enforcing business rules.
 
 ---
 
-## 2. Why Bronze Exists
+### 2. Why Bronze Exists
 
 This layer ensures that:
 
@@ -20,7 +20,7 @@ It acts as the **entry checkpoint of the pipeline**.
 
 ---
 
-## 3. Validation Strategy
+### 3. Validation Strategy
 
 Validation at this stage is limited to **schema-level checks**:
 
@@ -37,7 +37,7 @@ No business rules are applied at this stage.
 
 ---
 
-## 4. Output Zones
+### 4. Output Zones
 
 Events are separated into two zones:
 
@@ -54,7 +54,7 @@ This allows full traceability and debugging.
 
 ---
 
-## 5. Storage Design (Data Lake)
+### 5. Storage Design (Data Lake)
 
 The Bronze layer is stored in **Azure Data Lake Storage Gen2**, using container-based organization.
 
@@ -83,7 +83,7 @@ Reference:
 
 ---
 
-## 6. Value Provided
+### 6. Value Provided
 
 The Bronze layer provides:
 
@@ -94,7 +94,7 @@ The Bronze layer provides:
 
 ---
 
-## 7. Summary
+### 7. Summary
 
 The Bronze layer is the **foundation of the pipeline**.
 
