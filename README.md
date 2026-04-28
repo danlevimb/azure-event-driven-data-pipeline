@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 
-This project is a **hands-on exercise** that demonstrates the design and implementation of a data pipeline using Azure services under a **Medallion Architecture approach (Bronze → Silver → Gold)**.
+This project is a **hands-on exercise** that demonstrates the design and implementation of a data pipeline using Azure services under a **[Medallion Architecture approach](docs/architecture/medallion_design.md) (Bronze → Silver → Gold)**.
 
 Its purpose is to illustrate how core Azure components interact in a real-world scenario, combining **event-driven ingestion, data validation, state modeling, and business aggregation**.
 
@@ -26,7 +26,17 @@ The pipeline covers:
 For a high-level explanation of the system design:
 
 👉 [Architecture Overview](docs/architecture/overview.md)
-👉 [Medallion Design](docs/architecture/medallion_design.md)
+
+| Layer| Description |
+|------|-------------|
+| 📥 [Ingestion](docs/ingestion/event_contract.md) | Event generation and contract definition|
+| 🥉 [Bronze](docs/bronze/bronze_layer.md) | Raw ingestion and structural validation |
+| 🥈 [Silver](docs/silver/silver_layer.md) | Data cleansing, enrichment, and business validation |
+| 🥇 [Gold](docs/gold/gold_layer.md) | Business-ready aggregations and metrics |
+
+👉 [Bronze Data Contract](docs/bronze/data_contract.md)
+👉 [Silver Data Contract](docs/silver/data_contract.md)
+👉 [Metrics Definition](docs/gold/metrics_definition.md)
 
 ---
 
@@ -38,48 +48,9 @@ To understand how data moves through the pipeline:
 
 ---
 
-## 📥 Ingestion
-
-Event generation and contract definition:
-
-👉 [Event Contract & Producer](docs/ingestion/event_contract.md)
 
 ---
 
-## 🥉 Bronze Layer
-
-Raw ingestion and structural validation:
-
-👉 [Bronze Layer](docs/bronze/bronze_layer.md)
-👉 [Bronze Data Contract](docs/bronze/data_contract.md)
-
----
-
-## 🥈 Silver Layer
-
-Data cleansing, enrichment, and business validation:
-
-👉 [Silver Layer](docs/silver/silver_layer.md)
-👉 [Silver Data Contract](docs/silver/data_contract.md)
-
----
-
-## 🔁 Snapshot (State Modeling)
-
-Current state representation of business entities:
-
-👉 [Current Orders Snapshot](docs/silver/current_orders_snapshot.md)
-
----
-
-## 🥇 Gold Layer
-
-Business-ready aggregations and metrics:
-
-👉 [Gold Layer](docs/gold/gold_layer.md)
-👉 [Metrics Definition](docs/gold/metrics_definition.md)
-
----
 
 ## ⚙️ Design Decisions
 
