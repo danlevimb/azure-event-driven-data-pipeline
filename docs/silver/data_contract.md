@@ -2,10 +2,10 @@
 <a href="../../README.md">Home</a> |
 <a href="silver_layer.md">Back</a>
 </p
-  
+
 # Silver - Data Contract
 
-## 1. Input
+## 1. Input Event
 
 The Silver layer receives **validated events from Bronze**.
 
