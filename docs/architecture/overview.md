@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="architecture.png" width="900"/>
+  <img src="diagram.png" width="900"/>
 </p>
 
 ## 1. Overview
