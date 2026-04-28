@@ -1,4 +1,4 @@
-# Silver Data Contract
+# Silver - Data Contract
 
 ## 1. Input
 
