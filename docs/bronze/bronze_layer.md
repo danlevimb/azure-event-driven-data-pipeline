@@ -1,3 +1,7 @@
+<p align="center">
+<a href="../../README.md">Home</a>
+</p>
+
 # Bronze Layer
 
 ### 1. Purpose
