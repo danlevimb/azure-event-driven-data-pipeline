@@ -1,10 +1,14 @@
-# Gold Layer
+<p align="center">
+<a href="../../README.md">Home</a>
+</p>
+
+# 🥇 Gold Layer
 
 ## 1. Purpose
 
 The Gold layer is responsible for generating **business-ready datasets**.
 
-It transforms curated data into **aggregated metrics** that can be directly consumed for reporting and analytics.
+It transforms curated data into [aggregated metrics](metrics_definition.md) that can be directly consumed for reporting and analytics.
 
 ---
 
