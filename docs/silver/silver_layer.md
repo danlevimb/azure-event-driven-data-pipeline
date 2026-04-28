@@ -8,7 +8,7 @@
 
 The Silver layer is responsible for **data cleansing, validation, and enrichment**.
 
-It transforms raw events from Bronze into **structured and business-valid records**, generating also the [snapshot dataset](current_orders_snapshot.md) `current_orders`.
+It transforms raw events from Bronze into [structured and business-valid records](data_contract.md), generating also the [snapshot dataset](current_orders_snapshot.md) `current_orders`.
 
 ---
 
