@@ -2,7 +2,7 @@
 <a href="../../README.md">Home</a>
 </p>
 
-# Silver Layer
+# 🥈 Silver Layer
 
 ## 1. Purpose
 
