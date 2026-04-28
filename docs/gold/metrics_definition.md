@@ -3,7 +3,7 @@
 <a href="gold_layer.md">Back</a>
 </p>
 
-# Metrics Definition
+# Aggregated metrics
 
 ## 1. Purpose
 
