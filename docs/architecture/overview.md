@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="diagrams/banner.png" width="900"/>
+  <img src="architecture.png" width="900"/>
 </p>
 
-# Overview
+## 1. Overview
 
 This project implements a **production-style event-driven data pipeline** using Azure-native services, following the **Medallion Architecture pattern (Bronze → Silver → Gold)**.
 
