@@ -92,20 +92,24 @@ The Silver layer is stored in **Azure Data Lake Storage Gen2**, using a containe
 ```text id="s7v3c3"
 silver/
 ├── curated/
-│   └── year=YYYY/month=MM/day=DD/
-│
+│   └── year=YYYY/
+│       └── month=MM/
+│           └── day=DD/
 ├── quarantine/
-│   └── year=YYYY/month=MM/day=DD/
-│
+│   └── year=YYYY/
+│       └── month=MM/
+│           └── day=DD/
 └── current_orders/
-    └── year=YYYY/month=MM/day=DD/
+    └── year=YYYY/
+        └── month=MM/
+            └── day=DD/
 ```
 
 Partitioning is date-based and generated dynamically at write time.
 
 Reference:
 
-* `write_event()` → 
+* [`\app\shared\writers.py`](../../app/shared/writers.py)
 
 ---
 
