@@ -200,7 +200,7 @@ def send_portfolio_demo_batch(delay=1):
     print(f"✔ portfolio demo batch enviado | scenarios={len(scenarios)} | events_sent={events_sent}")
 
 if __name__ == "__main__":
-    TEST_MODE = "force_bad_status"
+    TEST_MODE = "portfolio_demo_batch"
     # Opciones:
     # None
     # "force_zero"
