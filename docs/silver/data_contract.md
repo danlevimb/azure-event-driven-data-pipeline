@@ -1,7 +1,7 @@
 <p align="center">
 <a href="../../README.md">Home</a> |
 <a href="silver_layer.md">Back</a>
-</p
+</p>
 
 # Silver - Data Contract
 
