@@ -23,7 +23,6 @@ project.lock.json
 .secrets
 appsettings.json
 local.settings.json
-.vscode/
 
 node_modules
 dist
