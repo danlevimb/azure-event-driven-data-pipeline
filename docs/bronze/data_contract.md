@@ -32,9 +32,9 @@ The Bronze layer receives events with the following structure:
 
 If the event passes schema validation, it is stored **unchanged** in:
 
-```text
-bronze/validated/
-```
+<p align="center">
+  <img src="bronze_validated.jpg" width="900"/>
+</p>
 
 No transformations are applied at this stage.
 
@@ -42,23 +42,21 @@ No transformations are applied at this stage.
 
 ## 3. Rejected Output
 
-If validation fails, the event is wrapped with error metadata:
+If validation fails, the event is wrapped with [error metadata](bronze_error_metadata.jpg)
 
-```json
-{
-  "validation_status": "rejected",
-  "rejection_reason": ["list of errors"],
-  "ingestion_timestamp_utc": "ISO8601",
-  "original_event": { ... }
-}
-```
-
-Stored in:
-
+Stored in: 
 ```text
-bronze/rejected/
+└── container/
+    └── bronze/
+        └── rejected/
+            └── year=YYYY/
+                └── month=MM/
+                    └── day=DD/
 ```
 
+<p align="center">
+  <img src="bronze_rejected.jpg" width="900"/>
+</p>
 ---
 
 ## 4. Contract Rules
