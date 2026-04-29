@@ -8,7 +8,6 @@ def validate_event(event_dict):
         "schema_version",
         "source_system",
         "event_time",
-        "NEW_FIELD",
         "payload"
     ]
 

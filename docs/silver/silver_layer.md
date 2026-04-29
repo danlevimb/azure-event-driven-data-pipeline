@@ -6,9 +6,13 @@
 
 ## 1. Purpose
 
-The Silver layer is responsible for **data cleansing, validation, and enrichment**.
+The validation rules and transformations implemented in this layer represent a subset of typical data processing logic, designed to illustrate the pattern and approach used in a Silver layer.
 
-It transforms raw events from Bronze into [structured and business-valid records](data_contract.md), generating also the [snapshot dataset](current_orders_snapshot.md) `current_orders`.
+This layer is responsible for **data cleansing, validation, and enrichment**.
+
+It transforms raw events from Bronze into [structured and business-valid records](data_contract.md), generating also the `current_orders` [snapshot dataset](current_orders_snapshot.md).
+
+The main purpose is to add some transformations & business validations to make sure records comply with enterprise requirements.
 
 ---
 
@@ -72,8 +76,9 @@ This ensures that only **analytics-ready data** is curated.
 
 Records are separated into:
 
-* `curated/` → valid and enriched data
-* `quarantine/` → invalid records with business rule violations
+* [`curated/`](silver_curated.jpg) → valid and enriched data
+* [`quarantine/`](silver_quarantine.jpg) → invalid records with business rule violations
+* [`current_orders/`](silver_current_orders.jpg) → snapshot dataset
 
 Quarantined records include:
 

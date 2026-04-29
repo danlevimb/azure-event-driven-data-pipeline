@@ -45,7 +45,7 @@ This ensures correct ordering even if events arrive out of sequence.
 
 Reference:
 
-* `should_overwrite_current_order()` → 
+*  [`\app\silver\current_order_state.py`](../../app/silver/current_order_state.py)→ `should_overwrite_current_order()`
 
 ---
 
@@ -99,7 +99,7 @@ Each record represents the **current state of an order**:
 
 Reference:
 
-* `build_current_order()` → 
+*  [`\app\silver\current_orders.py`](../../app/silver/current_order_state.py)→ `build_current_order()`
 
 ---
 
@@ -107,9 +107,12 @@ Reference:
 
 Snapshots are stored in the Silver container:
 
-```text id="ph8y4c"
-silver/current_orders/
-└── year=YYYY/month=MM/day=DD/
+```text
+silver/
+└── current_orders/
+    └── year=YYYY/
+        └── month=MM/
+            └── day=DD/
 ```
 
 Each file represents a single order:
