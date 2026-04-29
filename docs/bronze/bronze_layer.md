@@ -24,7 +24,10 @@ It acts as the **entry checkpoint of the pipeline**.
 
 ---
 
-### 3. Validation Strategy
+### 3. Transformation & Enrichment
+In Bronze layer there is no transformation made to data, just schema validation.
+
+### 4. Validation Strategy
 
 Validation at this stage is limited to **schema-level checks**:
 
@@ -41,7 +44,7 @@ No business rules are applied at this stage.
 
 ---
 
-### 4. Output Zones
+### 5. Output Zones
 
 Events are separated into two zones:
 
@@ -58,29 +61,20 @@ This allows full traceability and debugging.
 
 ---
 
-### 5. Storage Design (Data Lake)
+### 6. Storage Design (Data Lake)
 
-The Bronze layer is stored in **Azure Data Lake Storage Gen2**, using container-based organization.
-
-Each layer corresponds to a container:
-
-* `bronze` (this layer)
-* `silver`
-* `gold`
-
-Within the Bronze container, data is organized using a **date-based partitioning strategy**:
+The Bronze layer is stored in **Azure Data Lake Storage Gen2**, using a container-based structure.
 
 ```text
-└── container/
-    └── bronze/
-        ├── validated/
-        │   └── year=YYYY/
-        │       └── month=MM/
-        │           └── day=DD/
-        └── rejected/
-            └── year=YYYY/
-                └── month=MM/
-                    └── day=DD/
+└── bronze/
+    ├── validated/
+    │   └── year=YYYY/
+    │       └── month=MM/
+    │           └── day=DD/
+    └── rejected/
+        └── year=YYYY/
+            └── month=MM/
+                └── day=DD/
 ```
 
 This structure is generated dynamically at write time.
