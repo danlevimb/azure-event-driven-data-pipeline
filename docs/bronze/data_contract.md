@@ -30,7 +30,7 @@ The Bronze layer receives events with the following structure:
 
 ## 2. Validated Output
 
-If the event passes schema validation, it is stored **unchanged** in:
+Events that pass structural validation are stored here:
 
 ```text
 └── container/
@@ -41,9 +41,12 @@ If the event passes schema validation, it is stored **unchanged** in:
                     └── day=DD/
 ```
 
-<p align="center">
-  <img src="bronze_validated.jpg" width="900"/>
-</p>
+![Bronze Validated Events](bronze_validated.jpg)
+
+This output confirms that:
+- The event schema is correct
+- Required fields are present
+- Data is accepted for further processing
 
 No transformations are applied at this stage.
 
@@ -51,7 +54,7 @@ No transformations are applied at this stage.
 
 ## 3. Rejected Output
 
-If validation fails, the event is wrapped with [error metadata](bronze_error_metadata.jpg).
+Events that fail structural validation are routed to the `rejected` zone wrapped with [error metadata](bronze_error_metadata.jpg).
 
 Stored in: 
 ```text
@@ -62,10 +65,12 @@ Stored in:
                 └── month=MM/
                     └── day=DD/
 ```
+![Bronze Rejected Events](bronze_rejected.jpg)
 
-<p align="center">
-  <img src="bronze_rejected.jpg" width="900"/>
-</p>
+This output shows that:
+- Invalid schema is detected
+- Errors are captured and stored
+- Original payload is preserved for traceability
 
 ---
 

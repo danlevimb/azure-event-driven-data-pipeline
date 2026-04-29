@@ -30,7 +30,11 @@ Each validated Bronze event is transformed into a normalized structure.
 
 Key transformations include:
 
-* Standardized fields (`order_id`, `customer_id`, `currency_code`)
+* Standardized fields 
+  * `order_id`,
+  * `customer_id`, 
+  * `currency_code`
+
 * Derived attributes:
 
   * `order_value_tier`
@@ -44,7 +48,7 @@ Key transformations include:
 
 Reference:
 
-* `transform_to_silver()` → 
+* [`\app\silver\transformes.py`](../../app/silver/transformers.py)
 
 ---
 
@@ -58,7 +62,7 @@ Unlike Bronze, Silver enforces **business-level validation**:
 
 Reference:
 
-* `validate_silver_record()` → 
+* [`\app\silver\validators.py`](../../app/silver/validators.py)
 
 This ensures that only **analytics-ready data** is curated.
 

@@ -35,7 +35,7 @@ Validation at this stage is limited to **schema-level checks**:
 
 Reference:
 
-* `validate_event()` → 
+* [`\app\bronze\validators.py`](../../app/bronze/validators.py)
 
 No business rules are applied at this stage.
 
@@ -46,7 +46,7 @@ No business rules are applied at this stage.
 Events are separated into two zones:
 
 * [`validated/`](bronze_validated.jpg) → structurally correct events
-* `rejected/` → invalid events with error details
+* [`rejected/`](bronze_rejected.jpg) → invalid events with error details
 
 Rejected events include:
 
@@ -71,19 +71,23 @@ Each layer corresponds to a container:
 Within the Bronze container, data is organized using a **date-based partitioning strategy**:
 
 ```text
-bronze/
-├── validated/
-│   └── year=YYYY/month=MM/day=DD/
-│
-└── rejected/
-    └── year=YYYY/month=MM/day=DD/
+└── container/
+    └── bronze/
+        ├── validated/
+        │   └── year=YYYY/
+        │       └── month=MM/
+        │           └── day=DD/
+        └── rejected/
+            └── year=YYYY/
+                └── month=MM/
+                    └── day=DD/
 ```
 
 This structure is generated dynamically at write time.
 
 Reference:
 
-* `write_event()` → 
+* [`app\shared\writers.py`](../../app/shared/writers.py)
 
 ---
 
