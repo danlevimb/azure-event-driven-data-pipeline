@@ -45,7 +45,7 @@ No business rules are applied at this stage.
 
 Events are separated into two zones:
 
-* `validated/` → structurally correct events
+* [`validated/`](bronze_validated.jpg) → structurally correct events
 * `rejected/` → invalid events with error details
 
 Rejected events include:
