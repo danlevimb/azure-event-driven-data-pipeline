@@ -2,17 +2,15 @@
 <a href="../../README.md">Home</a>
 </p>
 
-# 🥉 Bronze Layer
+![Header image](bronze_header.png)
 
-### 1. Purpose
+## 1. Purpose
 
 The Bronze layer is responsible for **raw data ingestion**.
 
 It captures events as they arrive from Event Hub and applies [basic structural validation](data_contract.md), without enforcing business rules.
 
----
-
-### 2. Why Bronze Exists
+## 2. Why Bronze Exists
 
 This layer ensures that:
 
@@ -22,12 +20,10 @@ This layer ensures that:
 
 It acts as the **entry checkpoint of the pipeline**.
 
----
-
-### 3. Transformation & Enrichment
+## 3. Transformation & Enrichment
 In Bronze layer there is no transformation made to data, just schema validation.
 
-### 4. Validation Strategy
+## 4. Validation Strategy
 
 Validation at this stage is limited to **schema-level checks**:
 
@@ -42,9 +38,7 @@ Reference:
 
 No business rules are applied at this stage.
 
----
-
-### 5. Output Zones
+## 5. Output Zones
 
 Events are separated into two zones:
 
@@ -59,9 +53,7 @@ Rejected events include:
 
 This allows full traceability and debugging.
 
----
-
-### 6. Storage Design (Data Lake)
+## 6. Storage Design (Data Lake)
 
 The Bronze layer is stored in **Azure Data Lake Storage Gen2**, using a container-based structure.
 
@@ -77,15 +69,13 @@ The Bronze layer is stored in **Azure Data Lake Storage Gen2**, using a containe
                 └── day=DD/
 ```
 
-This structure is generated dynamically at write time.
+Partitioning is date-based and generated dynamically at write time.
 
 Reference:
 
 * [`app\shared\writers.py`](../../app/shared/writers.py)
 
----
-
-### 6. Value Provided
+### 7. Value Provided
 
 The Bronze layer provides:
 
@@ -94,9 +84,7 @@ The Bronze layer provides:
 * **Reprocessing capability** → raw data can be replayed if needed
 * **Scalability** → partitioned storage enables efficient data handling
 
----
-
-### 7. Summary
+### 8. Summary
 
 The Bronze layer is the **foundation of the pipeline**.
 

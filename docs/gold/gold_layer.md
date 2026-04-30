@@ -2,15 +2,13 @@
 <a href="../../README.md">Home</a>
 </p>
 
-# 🥇 Gold Layer
+![Header image](gold_header.png)
 
 ## 1. Purpose
 
 The Gold layer is responsible for generating **business-ready datasets**.
 
 It transforms curated data into [aggregated metrics](metrics_definition.md) that can be directly consumed for reporting and analytics.
-
----
 
 ## 2. Why Gold Exists
 
@@ -21,8 +19,6 @@ This layer ensures that:
 * Metrics are precomputed
 * Data is optimized for consumption
 * Business logic is consistently applied
-
----
 
 ## 3. Transformation & Enrichment
 
@@ -41,22 +37,16 @@ Reference:
 * `run_gold_batch_for_today()` → [`\app\gold\gold_aggregations.py`](../../app/gold/gold_aggregations.py)
 * [`Aggregated metrics`](metrics_definition.md)
 
----
-
 ## 4. Validation Strategy
 
 Gold does not validate any data, the objective of this layer is to generate aggregate data and business metrics (metadata) 
 
 This ensures that all aggregations are based on **validated and state-consistent data**.
 
----
-
 ## 5. Output Zones
 
 Records are generated into:
 * [`daily_order_summary/`](gold_daily_order_summary.jpg) → valid and enriched data
-
----
 
 ## 6. Storage Design (Data Lake)
 
@@ -71,9 +61,9 @@ gold/
 ```
 Partitioning is date-based and generated dynamically at write time.
 
-Each file represents a summary for a given date and currency.
+Reference:
 
----
+* [`app\gold\gold_aggregations.py`](../../app/shared/writers.py) → `write_daily_summaries_to_gold`
 
 ## 7. Value Provided
 
@@ -83,8 +73,6 @@ The Gold layer provides:
 * Consistent aggregation logic
 * Optimized datasets for reporting
 * A stable interface for consumers
-
----
 
 ## 8. Summary
 

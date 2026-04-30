@@ -2,7 +2,7 @@
 <a href="../../README.md">Home</a>
 </p>
 
-# 🥈 Silver Layer
+![Header image](silver_header.png)
 
 ## 1. Purpose
 
@@ -11,10 +11,6 @@ The validation rules and transformations implemented in this layer represent a s
 This layer is responsible for **data cleansing, validation, and enrichment**.
 
 It transforms raw events from Bronze into [structured and business-valid records](data_contract.md), generating also the `current_orders` [snapshot dataset](current_orders_snapshot.md).
-
-The main purpose is to add some transformations & business validations to make sure records comply with enterprise requirements.
-
----
 
 ## 2. Why Silver Exists
 
@@ -26,35 +22,22 @@ This layer ensures that:
 * Business rules are enforced
 * Data is standardized and enriched
 
----
-
 ## 3. Transformation & Enrichment
 
 Each validated Bronze event is transformed into a normalized structure.
 
-Key transformations include:
+Key transformations fields include:
 
-* Standardized fields 
-  * `order_id`,
-  * `customer_id`, 
-  * `currency_code`
-
-* Derived attributes:
-
-  * `order_value_tier`
-  * `is_high_value_order`
-  * `event_sequence_rank`
-  * `lifecycle_stage_name`
-* Metadata:
-
-  * `processed_at_utc`
-  * `pipeline_version`
+| Standarized | Derived | Metadata |
+|---|---|---|
+| `order_id` | `order_value_tier` | `processed_at_utc` |
+| `customer_id` | `is_high_value_order` | `pipeline_version` |
+| `currency_code` | `event_sequence_rank` | |
+||`lifecycle_stage_name`||
 
 Reference:
 
 * [`\app\silver\transformers.py`](../../app/silver/transformers.py)
-
----
 
 ## 4. Validation Strategy
 
@@ -67,10 +50,6 @@ Unlike Bronze, Silver enforces **business-level validation**:
 Reference:
 
 * [`\app\silver\validators.py`](../../app/silver/validators.py)
-
-This ensures that only **analytics-ready data** is curated.
-
----
 
 ## 5. Output Zones
 
@@ -87,8 +66,6 @@ Quarantined records include:
 * Processing timestamp
 
 This allows debugging without data loss.
-
----
 
 ## 6. Storage Design (Data Lake)
 
@@ -116,8 +93,6 @@ Reference:
 
 * [`\app\shared\writers.py`](../../app/shared/writers.py)
 
----
-
 ## 7. Additional Role: State Preparation
 
 Beyond validation, the Silver layer prepares data for **stateful modeling**.
@@ -129,8 +104,6 @@ This bridges the gap between:
 * Event streams (what happened)
 * Business state (what is true now)
 
----
-
 ## 8. Value Provided
 
 The Silver layer provides:
@@ -140,8 +113,6 @@ The Silver layer provides:
 * Enriched attributes for analytics
 * Isolation of invalid business records
 * Foundation for stateful modeling
-
----
 
 ## 9. Summary
 
