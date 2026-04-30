@@ -41,6 +41,8 @@ Metrics are grouped by:
 * `summary_date` → derived from the last event timestamp
 * `currency_code` → ensures separation of monetary values
 
+![Gold daily_order_summary](gold_daily_order_summary.jpg)
+
 ---
 
 ## 3. Metrics
@@ -56,11 +58,14 @@ Metrics are grouped by:
 |cancelled_revenue | Total value of cancelled orders | Sum of `order_total` where `is_cancelled_order = true` |
 | avg_order_value | Average value per order | `gross_revenue / total_orders` |
 
-## 4. Data Quality Considerations
+## 4. Metadata Fields
 
-* Metrics are computed only from **validated snapshot data**
-* Currency is not mixed across aggregations
-* Invalid or quarantined records are excluded upstream
+| Field | Definition |
+|-------|------------|
+| `processing_layer` | Indicates the pipeline layer that generated the record. For this dataset, the value is always `"gold"` |
+| `pipeline_version` | Version identifier of the pipeline logic used to generate the dataset. Useful for tracking changes in transformations or aggregations over time. |
+| `processed_at_utc` | Timestamp (UTC) indicating when the record was generated in the Gold layer. Supports auditing and traceability |
+| `data_quality_status` | Indicates the quality state of the data. For Gold outputs, this is `"VALIDATED"`, meaning all upstream validation rules were successfully applied. |
 
 ---
 
