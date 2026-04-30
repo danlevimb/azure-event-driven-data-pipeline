@@ -23,29 +23,14 @@ The pipeline covers:
 
 ## 🏗️ Architecture
 
+Pipeline components
 [Overview](docs/architecture/overview.md)
-
-| Layer| Description |
-|------|-------------|
-| 📥 [Ingestion](docs/ingestion/event_contract.md) | Event generation and contract definition|
-| 🥉 [Bronze](docs/bronze/bronze_layer.md) | Raw ingestion and structural validation |
-| 🥈 [Silver](docs/silver/silver_layer.md) | Data cleansing, enrichment, and business validation |
-| 🥇 [Gold](docs/gold/gold_layer.md) | Business-ready aggregations and metrics |
-
-👉 [Bronze Data Contract](docs/bronze/data_contract.md)
-👉 [Silver Data Contract](docs/silver/data_contract.md)
-👉 [Metrics Definition](docs/gold/metrics_definition.md)
-
----
 
 ## 🔄 End-to-End Flow
 
 To understand how data moves through the pipeline:
 
 👉 [End-to-End Data Flow](docs/data_flow/end_to_end_flow.md)
-
----
-
 
 ---
 

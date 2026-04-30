@@ -1,63 +1,86 @@
+<p align="center">
+<a href="../../README.md">Home</a>
+</p>
+
 # Architecture
+
 <p align="center">
   <img src="diagram.png" width="900"/>
 </p>
 
-This project implements a **production-style event-driven data pipeline** using Azure-native services, following the **Medallion Architecture pattern (Bronze → Silver → Gold)**.
+## 1. Scope
 
-The system is designed to:
+This pipeline is composed of six main architectural blocks:
 
-* Ingest high-frequency transactional events in real time
-* Enforce **data quality at multiple stages**
-* Maintain a **stateful representation of business entities**
-* Generate **aggregated, analytics-ready datasets**
+| Component | Role |
+|-----------|------|
+| 📥 [Ingestion](docs/ingestion/event_contract.md) | Produces and captures order events |
+| 🥉 [Bronze Layer](docs/bronze/bronze_layer.md) | Stores raw data and applies structural validation |
+| 🥈 [Silver Layer](docs/silver/silver_layer.md) | Cleanses, validates, enriches, and models current state |
+| ⚙️ Batch Trigger| Executed on demand (HTTP / Terminal)  |
+| 🥇 [Gold Layer](docs/gold/gold_layer.md) | Generates business-ready aggregated datasets |
+| 📤 Consumer Layer | Represents downstream analytical consumers |
 
-This architecture reflects real-world data engineering scenarios where **data reliability, traceability, and scalability** are critical.
+## 2. Azure Components
 
----
+All components were created inside the Resource Group `rg-dep2-dev-mty`
 
-## 2. Architectural Style
+![Azure components](azure_resource_group.jpg)
 
-The pipeline follows a **hybrid processing model**:
+## 3. Data Lake Organization
 
-| Processing Type       | Purpose                                     |
-| --------------------- | ------------------------------------------- |
-| Real-time (Streaming) | Event ingestion, validation, enrichment     |
-| Batch (On-demand)     | Aggregation and business metrics generation |
+ADLS Gen2 containers obey this structure:
 
-### Key Pattern:
+```text
+Azure Data Lake Storage Gen2
+├── bronze/
+│   ├── validated/
+│   └── rejected/
+│
+├── silver/
+│   ├── curated/
+│   ├── quarantine/
+│   └── current_orders/
+│
+└── gold/
+    └── daily_order_summary/
+```
 
-* **Event-driven ingestion** using Azure Event Hub
-* **Layered data refinement** using Medallion Architecture
-* **Stateful modeling** via entity snapshot (current_orders)
-* **Separation of concerns** between ingestion and analytics
+Each zone uses date-based partitioning:
+```text
+└── year=YYYY/
+    └── month=MM/
+        └── day=DD/
+```
 
----
+## 4. Principles
 
-## 4. Core Components
+| Principle |	Description |
+|-----------|-------------|
+|Data Quality First	| Validation is applied before data moves downstream |
+| Medallion Architecture | Data is refined progressively across layers |
+| Real-Time + Batch | Streaming ingestion is separated from analytical aggregation |
+| Scalability & Modularity | Each component has a specific responsibility |
+| Traceability | Raw, rejected, quarantined, curated, and aggregated records are preserved separately |
 
-4.1 Event Producer & Ingestion (Azure Event Hub)
-4.1.1 Event Producer
-4.1.2 Real-Time Processing (Azure Functions)
-4.2 Data Lake Storage (ADLS Gen2)
-4.2.1 Bronze Layer (Raw Ingestion)
-4.2.2 Silver Layer (Cleansing & Enrichment)
-4.2.3 Gold Layer (Aggregations)
+## 5. Technology Stack
+| Component | Technology |
+|-----------|------------|
+| Event Producer | Python |
+| Streaming Ingestion| Azure Event Hub |
+| Real-Time Processing | Azure Functions |
+| Storage | Azure Data Lake Storage Gen2 |
+| Batch Processing | HTTP-triggered Azure Function |
+| Data Format | JSON |
 
----
+## 6. Summary
 
-## 8. Summary
+This architecture separates the pipeline into clear components, each with a specific responsibility.
 
-This pipeline demonstrates a **complete, production-oriented data engineering workflow**, including:
+The model is designed to demonstrate how Azure services can be combined to implement a Medallion-style data pipeline with:
 
 * Event-driven ingestion
-* Multi-layer data validation
+* Layered data validation
 * Stateful entity modeling
 * Batch aggregation
-* Scalable storage design
-
-It reflects real-world patterns used in modern data platforms and serves as a foundation for advanced extensions such as:
-
-* Orchestration (ADF / Airflow)
-* Data warehousing
-* Streaming analytics
+* Analytics-ready outputs

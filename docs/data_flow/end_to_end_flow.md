@@ -1,5 +1,25 @@
-# End-to-End Data Flow
+## End-to-End Pipeline Flow
+```mermaid 
+flowchart LR
 
+    A[1. Producer] --> B[2. Event Hub]
+    B --> C[3. Azure Function]
+
+    C --> D[4. Bronze]
+    D --> D1[validated]
+    D --> D2[rejected]
+
+    D1 --> E[5. Silver]
+    E --> E1[curated]
+    E --> E2[quarantine]
+    E --> E3[current_orders]
+
+    E3 --> F[6. Batch Trigger]
+    F --> G[7. Gold]
+    G --> G1[daily_order_summary]
+
+    G1 --> H[8. Consumers]
+```
 ## Overview
 
 This document describes how data flows through the pipeline, from event generation to final business metrics.
