@@ -122,7 +122,7 @@ Reference:
 
 Beyond validation, the Silver layer prepares data for **stateful modeling**.
 
-Each curated record is used to build the **current state of an order**, which is stored in the `current_orders` dataset.
+Each curated record is used to build the **current state of an order**, which is stored in the [`current_orders`](current_orders_snapshot.md) dataset.
 
 This bridges the gap between:
 
