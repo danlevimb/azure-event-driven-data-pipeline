@@ -9,11 +9,32 @@
 
 This document defines the business metrics generated in the Gold layer.
 
-All metrics are computed from the **current_orders snapshot**, ensuring consistency and reliability.
+All metrics are computed from the [current_orders snapshot](../silver/current_orders_snapshot.md), ensuring consistency and reliability.
 
 ---
 
 ## 2. Aggregation Dimensions
+
+```json id="qz1b2k"
+{
+  "summary_date": "YYYY-MM-DD",
+  "currency_code": "MXN | USD",
+
+  "total_orders": 100,
+  "paid_orders": 80,
+  "cancelled_orders": 20,
+  "high_value_orders": 10,
+  "gross_revenue": 50000.00,
+  "net_revenue": 42000.00,
+  "cancelled_revenue": 8000.00,
+  "avg_order_value": 500.00,
+
+  "processing_layer": "gold",
+  "pipeline_version": "1.1",
+  "processed_at_utc": "ISO8601",
+  "data_quality_status": "VALIDATED"
+}
+```
 
 Metrics are grouped by:
 
@@ -24,88 +45,16 @@ Metrics are grouped by:
 
 ## 3. Metrics
 
-### total_orders
-
-**Definition:**
-Total number of orders in the dataset.
-
-**Logic:**
-Count of all records.
-
----
-
-### paid_orders
-
-**Definition:**
-Number of orders with status `PAID`.
-
-**Logic:**
-Count where `is_paid_order = true`
-
----
-
-### cancelled_orders
-
-**Definition:**
-Number of orders with status `CANCELLED`.
-
-**Logic:**
-Count where `is_cancelled_order = true`
-
----
-
-### high_value_orders
-
-**Definition:**
-Number of orders classified as high value.
-
-**Logic:**
-Count where `business_priority_flag = HIGH_VALUE`
-
----
-
-### gross_revenue
-
-**Definition:**
-Total value of all orders, regardless of status.
-
-**Logic:**
-Sum of `order_total` across all records
-
----
-
-### net_revenue
-
-**Definition:**
-Revenue from completed (paid and not cancelled) orders.
-
-**Logic:**
-Sum of `order_total` where:
-
-* `is_paid_order = true`
-* `is_cancelled_order != true`
-
----
-
-### cancelled_revenue
-
-**Definition:**
-Total value of cancelled orders.
-
-**Logic:**
-Sum of `order_total` where `is_cancelled_order = true`
-
----
-
-### avg_order_value
-
-**Definition:**
-Average value per order.
-
-**Logic:**
-`gross_revenue / total_orders`
-
----
+| Metric | Definition | Logic |
+|------- |----------- |-------|
+| total_orders | Total number of orders in the dataset. | Count of all records |
+| paid_orders | Number of orders with status `PAID` | Count where `is_paid_order = true` |
+| cancelled_orders | Number of orders with status `CANCELLED` | Count where `is_cancelled_order = true` |
+| high_value_orders | Number of orders classified as high value | Count where `business_priority_flag = HIGH_VALUE` |
+| gross_revenue | Total value of all orders, regardless of status | Sum of `order_total` across all records | 
+| net_revenue | Revenue from completed (paid and not cancelled) orders | Sum of `order_total` where: `is_paid_order = true`  and `is_cancelled_order != true` |
+|cancelled_revenue | Total value of cancelled orders | Sum of `order_total` where `is_cancelled_order = true` |
+| avg_order_value | Average value per order | `gross_revenue / total_orders` |
 
 ## 4. Data Quality Considerations
 
