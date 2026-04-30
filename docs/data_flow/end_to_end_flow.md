@@ -133,7 +133,7 @@ These datasets are:
 ## Full Flow Summary
 
 ```text
-Producer
+[Producer](text)
    ↓
 Event Hub
    ↓
