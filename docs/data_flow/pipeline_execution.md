@@ -17,7 +17,8 @@ This document describes how to execute the pipeline locally, including:
 
 ## 2. Pre-requisites
 
-This are some of the resources needed to run this pipleline.
+These are the resources required to run this pipeline.
+
   * Python 3.13
   * Azure Functions Core Tools
   * Azure Storage Account (Data Lake Gen2)
@@ -89,15 +90,26 @@ func start
 
 Before running producer, take a look at the desired run-mode:
 
-| Mode | Events generated |
-|------|-------------|
-| force_zero | `order_total = 0` |
-| force_bad_currency | Unsupported currency codes |
-| force_bad_status | Invalid order statuses | 
-| same_order_lifecycle | Multiple events for the same `order_id` |
-| portfolio_demo_batch | Mixed dataset combining valid, invalid, and high-value scenarios | 
+| Mode | Description | Expected Behavior |
+|------|------------|------------------|
+| `force_zero` | Generates events with `order_total = 0` | Should pass Bronze validation but fail Silver business rules → routed to `silver/quarantine` |
+| `force_bad_currency` | Generates events with unsupported currency codes (e.g., EUR) | Should pass Bronze but fail Silver validation → quarantined |
+| `force_bad_status` | Generates events with invalid order statuses | Should be rejected at Silver layer due to invalid lifecycle state |
+| `same_order_lifecycle` | Generates multiple events for the same `order_id` simulating lifecycle transitions | Validates snapshot overwrite logic in `current_orders` |
+| `portfolio_demo_batch` | Generates a mixed dataset (valid, invalid, lifecycle, high-value) | Exercises full pipeline behavior end-to-end across all layers |
 
-Set these modes on `TEST_MODE` variable<>
+#### Validation Mapping
+
+These modes are designed to validate specific pipeline behaviors:
+
+- Bronze Layer → structural validation (schema, required fields)
+- Silver Layer → business validation and enrichment
+- Snapshot → state correctness and ordering logic
+- Gold Layer → aggregation consistency
+
+This allows targeted testing of each pipeline component.
+
+Set the desired mode in the `TEST_MODE` variable inside the producer script.
 
 ![TEST_Mode_configuration](send_sales_events.jpg)
 
@@ -112,13 +124,30 @@ Now, run the event producer:
 ```bash
 python producer/send_sales_events.py
 ```
-[Producer results](producer_results.md)
+
  
 This will:
 
 * Send events to Event Hub
 * Trigger real-time processing
 * Populate Bronze & Silver layers
+
+[Sample Execution Output](producer_results.md)
+
+Below is an example of events generated using `portfolio_demo_batch`:
+
+- Multiple scenarios are produced:
+  - paid_order
+  - cancelled_order
+  - paid_then_cancelled
+  - open_order
+  - high_value_paid
+  - zero_amount
+  - bad_currency
+  - bad_status
+
+This demonstrates how different event types flow through the pipeline and trigger distinct validation paths.
+
 
 ---
 
@@ -163,7 +192,7 @@ Azure Data Lake Storage Gen2
 
 ## 8. Summary
 
-This execution flow demonstrates a hybrid pipelinerunning this execution steps:
+This execution flow demonstrates a hybrid pipeline using the following steps:
 
 ```text
 1. Start Azure Function

@@ -1,4 +1,4 @@
-# Architectural Choices
+# Design decisions
 
 ## 1. Purpose
 

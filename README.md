@@ -23,14 +23,15 @@ The pipeline covers:
 
 ## 🏗️ Architecture
 
-Pipeline components
-[Overview](docs/architecture/overview.md)
+To understand how the pipeline is constructed:
 
-## 🔄 End-to-End Flow
+[Pipeline components](docs/architecture/overview.md)
+
+## 🔄 Pipeline execution
 
 To understand how data moves through the pipeline:
 
-👉 [End-to-End Data Flow](docs/data_flow/end_to_end_flow.md)
+[Data Flow](docs/data_flow/pipeline_execution.md)
 
 ---
 
@@ -39,16 +40,16 @@ To understand how data moves through the pipeline:
 
 Key architectural choices and trade-offs:
 
-👉 [Architectural Choices](docs/design_decisions/architectural_choices.md)
+[Design decisions](docs/design_decisions/design_decisions.md)
 
 ---
 
-## 🧪 Operations & Testing
+## 🧪 Testing Scenarios
 
-Execution and validation of the pipeline:
+Take a look at how pipeline behaves on different execution modes:
 
-👉 [How to Run](docs/operations/how_to_run.md)
-👉 [Testing Scenarios](docs/operations/testing_scenarios.md)
+👉 [Testing Scenarios](docs/design_testing_scenarios.md)
+
 👉 [Troubleshooting](docs/operations/troubleshooting.md)
 
 ---
