@@ -12,6 +12,8 @@ This document describes how to execute the pipeline locally, including:
 
 ## 2. Prerequisites
 
+This are some of the resources needed to run this pipleline, also, you can check the full list on [requirements.txt](../../requirements.txt)
+
 * Python 3.13
 * Azure Functions Core Tools
 * Azure Storage Account (Data Lake Gen2)
