@@ -1,3 +1,8 @@
+
+<p align="center">
+<a href="../../README.md">Home</a>
+</p>
+
 # How to Run the Pipeline
 
 ## 1. Overview
@@ -10,9 +15,9 @@ This document describes how to execute the pipeline locally, including:
 
 ---
 
-## 2. Prerequisites
+## 2. Pre-requisites
 
-* This are some of the resources needed to run this pipleline.
+This are some of the resources needed to run this pipleline.
   * Python 3.13
   * Azure Functions Core Tools
   * Azure Storage Account (Data Lake Gen2)
@@ -24,20 +29,31 @@ For full requirement list take a look at [requirements.txt](../../requirements.t
 
 ## 3. Environment Setup
 
-### 3.1 Create virtual environment
+
+### 3.1 Download repository
+
+Identify & place repository on desired destination directory.
+
+| Type | Item | Description |
+|------|-----------|-------------|
+| Directory | `\app` | Functions layers  |
+| File | `\producer\send_sales_event.py`| Event producer |
+| File| `function_app.py` | Functions available |
+
+### 3.2 Create virtual environment
 
 ```bash
-python -m venv .venv
+python -m venv .venv 
 .\.venv\Scripts\Activate
 ```
 
-### 3.2 Install dependencies
+### 3.3 Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3.3 Configure environment variables
+### 3.4 Configure environment variables
 
 Edit `local.settings.json`:
 
@@ -53,14 +69,15 @@ Edit `local.settings.json`:
   }
 }
 ```
-> Use connection string acces on `RootManageSharedAccessKey`
-> 
+> Use connection string access on `RootManageSharedAccessKey` for each variable.
+
+![Connection string screenshot](RootManageSharedAccessKey.jpg)
 
 ---
 
 ## 4. Start the Pipeline (Real-Time Layer)
 
-Run the Azure Function locally:
+Run the Azure Function on repository directory:
 
 ```bash
 func start
@@ -70,7 +87,26 @@ func start
 
 ## 5. Generate Events (Producer)
 
-Run the event producer:
+Before running producer, take a look at the desired run-mode:
+
+| Mode | Events generated |
+|------|-------------|
+| force_zero | `order_total = 0` |
+| force_bad_currency | Unsupported currency codes |
+| force_bad_status | Invalid order statuses | 
+| same_order_lifecycle | Multiple events for the same `order_id` |
+| portfolio_demo_batch | Mixed dataset combining valid, invalid, and high-value scenarios | 
+
+Set these modes on `TEST_MODE` variable<>
+
+![TEST_Mode_configuration](send_sales_events.jpg)
+
+#### Notes
+- These modes are intentionally designed to simulate real-world data quality scenarios.
+- They allow validation of both structural (Bronze) and business (Silver) rules.
+- Use `portfolio_demo_batch` mode for demonstrating full pipeline execution.
+
+Now, run the event producer:
 
 ```bash
 python producer/send_sales_events.py
@@ -81,7 +117,7 @@ This will:
 
 * Send events to Event Hub
 * Trigger real-time processing
-* Populate Bronze and Silver layers
+* Populate Bronze & Silver layers
 
 ---
 
@@ -107,7 +143,7 @@ Invoke-RestMethod -Method POST http://localhost:7071/api/gold-batch
 
 ## 7. Validate Outputs
 
-Check data in Azure Data Lake:
+Check data in Azure Data Lake Containers:
 
 ``` text
 Azure Data Lake Storage Gen2
