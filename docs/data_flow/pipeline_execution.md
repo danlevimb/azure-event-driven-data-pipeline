@@ -12,12 +12,13 @@ This document describes how to execute the pipeline locally, including:
 
 ## 2. Prerequisites
 
-This are some of the resources needed to run this pipleline, also, you can check the full list on [requirements.txt](../../requirements.txt)
+* This are some of the resources needed to run this pipleline.
+  * Python 3.13
+  * Azure Functions Core Tools
+  * Azure Storage Account (Data Lake Gen2)
+  * Event Hub namespace
 
-* Python 3.13
-* Azure Functions Core Tools
-* Azure Storage Account (Data Lake Gen2)
-* Event Hub namespace
+For full requirement list take a look at [requirements.txt](../../requirements.txt)
 
 --- 
 
@@ -52,7 +53,8 @@ Edit `local.settings.json`:
   }
 }
 ```
-> Use connection string acces on azure key management
+> Use connection string acces on `RootManageSharedAccessKey`
+> 
 
 ---
 
