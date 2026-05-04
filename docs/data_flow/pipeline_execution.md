@@ -103,6 +103,7 @@ Set these modes on `TEST_MODE` variable<>
 
 #### Notes
 - These modes are intentionally designed to simulate real-world data quality scenarios.
+- `force_` parameters generate evidence on corresponding locations and stage (`bronze\rejected` - `silver\quarantine`)
 - They allow validation of both structural (Bronze) and business (Silver) rules.
 - Use `portfolio_demo_batch` mode for demonstrating full pipeline execution.
 
