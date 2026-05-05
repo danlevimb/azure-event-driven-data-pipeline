@@ -3,7 +3,7 @@
 <a href="../../README.md">Home</a>
 </p>
 
-# How to Run the Pipeline
+#  🔄 Pipeline execution
 
 ## 1. Overview
 

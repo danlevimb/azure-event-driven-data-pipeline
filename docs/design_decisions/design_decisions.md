@@ -1,4 +1,8 @@
-# Design decisions
+<p align="center">
+<a href="../../README.md">Home</a>
+</p>
+
+# ⚙️ Design decisions
 
 ## 1. Purpose
 

@@ -2,7 +2,7 @@
 <a href="../../README.md">Home</a>
 </p>
 
-# Architecture
+# 🏗️ Architecture
 
 <p align="center">
   <img src="diagram.png" width="900"/>
