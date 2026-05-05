@@ -2,7 +2,7 @@
 <a href="../README.md">Home</a>
 </p>
 
-# Repository Structure
+# Repository structure
 
 ## 1. Purpose
 

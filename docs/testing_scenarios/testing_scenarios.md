@@ -2,7 +2,7 @@
 <a href="../../README.md">Home</a>
 </p>
 
-# Testing Scenarios
+# 🧪 Testing scenarios
 
 ## 1. Purpose
 

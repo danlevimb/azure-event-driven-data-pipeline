@@ -26,9 +26,9 @@ The pipeline covers:
 |------|-------------|
 |🏗️ [Architecture](docs/architecture/overview.md) | How the pipeline is constructed |
 |🔄 [Pipeline execution](docs/data_flow/pipeline_execution.md) | How data moves through the pipeline |
-| ⚙️ [Design Decisions](docs/design_decisions/design_decisions.md) | Key architectural choices and trade-offs |
-| 🧪 [Testing Scenarios](docs/design_testing_scenarios.md) | How pipeline behaves on different execution modes |
-| 📁 [Repository Structure](/docs/repository_structure.md) | Project organization |
+| ⚙️ [Design decisions](docs/design_decisions/design_decisions.md) | Key architectural choices and trade-offs |
+| 🧪 [Testing scenarios](docs/testing_scenarios/testing_scenarios.md) | How pipeline behaves on different execution modes |
+| 📁 [Repository structure](/docs/repository_structure.md) | Project organization |
 
 ## 🎯 Key Concepts Demonstrated
 
