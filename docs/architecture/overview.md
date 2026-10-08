@@ -14,11 +14,11 @@ This pipeline is composed of six main architectural blocks:
 
 | Component | Role |
 |-----------|------|
-| 📥 [Ingestion](docs/ingestion/event_contract.md) | Produces and captures order events |
-| 🥉 [Bronze Layer](docs/bronze/bronze_layer.md) | Stores raw data and applies structural validation |
-| 🥈 [Silver Layer](docs/silver/silver_layer.md) | Cleanses, validates, enriches, and models current state |
+| 📥 [Ingestion](../ingestion/event_contract.md) | Produces and captures order events |
+| 🥉 [Bronze Layer](../bronze/bronze_layer.md) | Stores raw data and applies structural validation |
+| 🥈 [Silver Layer](../silver/silver_layer.md) | Cleanses, validates, enriches, and models current state |
 | ⚙️ Batch Trigger| Executed on demand (HTTP / Terminal)  |
-| 🥇 [Gold Layer](docs/gold/gold_layer.md) | Generates business-ready aggregated datasets |
+| 🥇 [Gold Layer](../gold/gold_layer.md) | Generates business-ready aggregated datasets |
 | 📤 Consumer Layer | Represents downstream analytical consumers |
 
 ## 2. Azure Components

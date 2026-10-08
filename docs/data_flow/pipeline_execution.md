@@ -38,7 +38,7 @@ Identify & place repository on desired destination directory.
 | Type | Item | Description |
 |------|-----------|-------------|
 | Directory | `\app` | Functions layers  |
-| File | `\producer\send_sales_event.py`| Event producer |
+| File | `\producer\send_sales_events.py`| Event producer |
 | File| `\function_app.py` | Function container |
 
 ### 3.2 Create virtual environment
@@ -56,23 +56,33 @@ pip install -r requirements.txt
 
 ### 3.4 Configure environment variables
 
-Edit `local.settings.json`:
+Create a local `local.settings.json` file. This file is excluded by `.gitignore` and must never be committed.
+
+Use placeholders in documentation and keep real values only in the local development environment:
 
 ```json
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=....",
+    "AzureWebJobsStorage": "<local-or-azure-storage-connection>",
     "FUNCTIONS_WORKER_RUNTIME": "python",
-    "EVENT_HUB_CONNECTION": "Endpoint=sb://evhns-dep2-dev-mty.servicebus.windows.net/;SharedAccessKeyName=...",
-    "DATALAKE_CONNECTION": "DefaultEndpointsProtocol=https;AccountName=...",
-    "PRODUCER_EVENT_HUB_CONNECTION": "Endpoint=sb://evhns-dep2-dev-mty.servicebus.windows.net/..."
+    "EVENT_HUB_CONNECTION": "<event-hub-consumer-connection>",
+    "DATALAKE_CONNECTION": "<storage-connection>",
+    "PRODUCER_EVENT_HUB_CONNECTION": "<event-hub-producer-connection>"
   }
 }
 ```
-> Use connection string access on `RootManageSharedAccessKey` for each variable.
 
-![Connection string screenshot](RootManageSharedAccessKey.jpg)
+For this MVP, the code uses connection-string authentication.
+
+Use separate least-privilege Event Hub shared access policies where possible:
+
+- producer connection: **Send** permission;
+- Azure Function trigger connection: **Listen** permission.
+
+Avoid using `RootManageSharedAccessKey` for routine application access.
+
+For a production implementation, prefer identity-based authentication such as Managed Identity where supported and move any remaining secrets to a managed secret store.
 
 ---
 
