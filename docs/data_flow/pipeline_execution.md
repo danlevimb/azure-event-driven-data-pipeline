@@ -38,7 +38,7 @@ Identify & place repository on desired destination directory.
 | Type | Item | Description |
 |------|-----------|-------------|
 | Directory | `\app` | Functions layers  |
-| File | `\producer\send_sales_event.py`| Event producer |
+| File | `\producer\send_sales_events.py`| Event producer |
 | File| `\function_app.py` | Function container |
 
 ### 3.2 Create virtual environment
